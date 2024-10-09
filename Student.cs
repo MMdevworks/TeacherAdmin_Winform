@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace TeacherAdmin_Winform
 {
+    class StudentGPAComparer : IComparer<Student>
+    {
+        public int Compare(Student? x, Student? y)
+        {
+            return y.GPA.CompareTo(x.GPA);
+        }
+    }
     internal class Student
     {
         public int Id { get; set; }
