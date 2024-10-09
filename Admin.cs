@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TeacherAdmin_Winform
 {
@@ -62,23 +63,29 @@ namespace TeacherAdmin_Winform
         private void btnExport_Click(object sender, EventArgs e)
         {
             const string path = @"C:\MSSA\Files\";
-            string filename = "HighestGPA.txt";
+            string filename = "HighestGPA_";
+            string extension = ".txt";
             StreamWriter writer = null;
+            string datetime = DateTime.Now.ToString("yyyy-MM-dd_HHmmss");
+
+            Student.Data.Sort(new StudentGPAComparer());
+            
+
+
 
             try
             {
                 if (!File.Exists(filename))
                 {
-                    writer = File.CreateText(path + filename);
-                    writer.WriteLine($"Highest GPA");
-                    writer.WriteLine($"New file created at {DateTime.Now}");
+                    writer = File.CreateText(path + filename + datetime + extension);
+                    writer.WriteLine($"Highest GPA {Student.Data[0].GPA} Name: {Student.Data[0].Name}");
                     MessageBox.Show("File Exported!");
                 }
-                else
-                {
-                    File.AppendAllText(path + filename, $"Highest GPA {DateTime.Now}");
-                    MessageBox.Show("Exported into existing file.");
-                }
+                //else
+                //{
+                //    File.AppendAllText(path + filename, $"Highest GPA {DateTime.Now}");
+                //    MessageBox.Show("Exported into existing file.");
+                //}
             }
             catch (Exception ex)
             {
