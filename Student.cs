@@ -11,5 +11,7 @@ namespace TeacherAdmin_Winform
         public int Id { get; set; }
         public string Name { get; set; }
         public float GPA { get; set; }
+
+        public static List<Student> Data = new List<Student>();
     }
 }
