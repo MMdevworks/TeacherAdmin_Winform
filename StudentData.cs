@@ -8,5 +8,6 @@ namespace TeacherAdmin_Winform
 {
     internal class StudentData
     {
+        //public static List<Student> Data = new List<Student>();
     }
 }
