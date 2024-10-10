@@ -21,12 +21,17 @@ namespace TeacherAdmin_Winform
 
         public static List<Student> Data = new List<Student>();
 
-    }
+        public static List<Student> honorsList = new List<Student>();
+
         public static void HonorRoll(List<Student> students) 
         {
             foreach(var student in students)
             {
-                if (student.Id == 0)
+                if (student.GPA >= 4.5)
+                {
+                    honorsList.Add(student);
+                }
             }
         }
+    }
 }

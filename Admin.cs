@@ -28,6 +28,8 @@ namespace TeacherAdmin_Winform
             Student.Data.Add(new Student() { Id = 1004, Name = "Amy", GPA = 3.9f });
             Student.Data.Add(new Student() { Id = 1005, Name = "George", GPA = 3.3f });
             gridStudents.DataSource = Student.Data;
+            
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -41,8 +43,6 @@ namespace TeacherAdmin_Winform
             Student.Data.Add(newStudent);
 
             RefreshData();
-
-
         }
 
         private void RefreshData()
@@ -73,36 +73,90 @@ namespace TeacherAdmin_Winform
             if (radioHighestGPA.Checked == true)
             {
                 filename = "HighestGPA_";
+                Student.Data.Sort(new StudentGPAComparer());
+                try
+                {
+                    if (!File.Exists(filename))
+                    {
+                        writer = File.CreateText(path + filename + datetime + extension);
+                        writer.WriteLine($"Highest GPA {Student.Data[0].GPA} Name: {Student.Data[0].Name}");
+                        MessageBox.Show("File Exported!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurred, please try again in a few seconds.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    if (writer != null)
+                        writer.Close();
+                }
             }
             else if (radioHonorRoll.Checked == true)
             {
                 filename = "HonorRoll_";
+                Student.HonorRoll(Student.Data);
+
+                try
+                {
+                    if (!File.Exists(filename))
+                    {
+                        writer = File.CreateText(path + filename + datetime + extension);
+                        writer.WriteLine($"Honor Roll Students:");
+                        foreach (var student in Student.honorsList)
+                        {
+                            writer.WriteLine($"StudentId: {student.Id} Name: {student.Name} GPA: {student.GPA}");
+                        }
+
+
+
+                        MessageBox.Show("File Exported!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurred, please try again in a few seconds.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    if (writer != null)
+                        writer.Close();
+                }
             }
 
-            Student.Data.Sort(new StudentGPAComparer());
+            //Student.Data.Sort(new StudentGPAComparer());
             
-            try
-            {
-                if (!File.Exists(filename))
-                {
-                    writer = File.CreateText(path + filename + datetime + extension);
-                    writer.WriteLine($"Highest GPA {Student.Data[0].GPA} Name: {Student.Data[0].Name}");
-                    MessageBox.Show("File Exported!");
-                }
-                else
-                {
-                    MessageBox.Show("An error occurred, please try again in a few seconds.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                if (writer != null)
-                    writer.Close();
-            }
+            //try
+            //{
+            //    if (!File.Exists(filename))
+            //    {
+            //        writer = File.CreateText(path + filename + datetime + extension);
+            //        writer.WriteLine($"Highest GPA {Student.Data[0].GPA} Name: {Student.Data[0].Name}");
+            //        MessageBox.Show("File Exported!");
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("An error occurred, please try again in a few seconds.");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+            //finally
+            //{
+            //    if (writer != null)
+            //        writer.Close();
+            //}
 
 
 
