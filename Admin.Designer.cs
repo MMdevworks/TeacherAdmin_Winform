@@ -35,10 +35,11 @@
             txtStudName = new TextBox();
             txtStudGPA = new TextBox();
             btnExport = new Button();
-            cboxHighest = new CheckBox();
-            cboxHonorRoll = new CheckBox();
             radioHighestGPA = new RadioButton();
             radioHonorRoll = new RadioButton();
+            lblStudentid = new Label();
+            lblStudentName = new Label();
+            lblGPA = new Label();
             ((System.ComponentModel.ISupportInitialize)gridStudents).BeginInit();
             SuspendLayout();
             // 
@@ -53,7 +54,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(557, 212);
+            btnAdd.Location = new Point(557, 219);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(75, 23);
             btnAdd.TabIndex = 1;
@@ -102,30 +103,10 @@
             btnExport.UseVisualStyleBackColor = true;
             btnExport.Click += btnExport_Click;
             // 
-            // cboxHighest
-            // 
-            cboxHighest.AutoSize = true;
-            cboxHighest.Location = new Point(468, 329);
-            cboxHighest.Name = "cboxHighest";
-            cboxHighest.Size = new Size(92, 19);
-            cboxHighest.TabIndex = 7;
-            cboxHighest.Text = "Highest GPA";
-            cboxHighest.UseVisualStyleBackColor = true;
-            // 
-            // cboxHonorRoll
-            // 
-            cboxHonorRoll.AutoSize = true;
-            cboxHonorRoll.Location = new Point(591, 329);
-            cboxHonorRoll.Name = "cboxHonorRoll";
-            cboxHonorRoll.Size = new Size(83, 19);
-            cboxHonorRoll.TabIndex = 8;
-            cboxHonorRoll.Text = "Honor Roll";
-            cboxHonorRoll.UseVisualStyleBackColor = true;
-            // 
             // radioHighestGPA
             // 
             radioHighestGPA.AutoSize = true;
-            radioHighestGPA.Location = new Point(426, 378);
+            radioHighestGPA.Location = new Point(478, 318);
             radioHighestGPA.Name = "radioHighestGPA";
             radioHighestGPA.Size = new Size(91, 19);
             radioHighestGPA.TabIndex = 9;
@@ -136,7 +117,7 @@
             // radioHonorRoll
             // 
             radioHonorRoll.AutoSize = true;
-            radioHonorRoll.Location = new Point(426, 404);
+            radioHonorRoll.Location = new Point(618, 318);
             radioHonorRoll.Name = "radioHonorRoll";
             radioHonorRoll.Size = new Size(82, 19);
             radioHonorRoll.TabIndex = 10;
@@ -144,15 +125,43 @@
             radioHonorRoll.Text = "Honor Roll";
             radioHonorRoll.UseVisualStyleBackColor = true;
             // 
+            // lblStudentid
+            // 
+            lblStudentid.AutoSize = true;
+            lblStudentid.Location = new Point(448, 64);
+            lblStudentid.Name = "lblStudentid";
+            lblStudentid.Size = new Size(61, 15);
+            lblStudentid.TabIndex = 11;
+            lblStudentid.Text = "Student Id";
+            // 
+            // lblStudentName
+            // 
+            lblStudentName.AutoSize = true;
+            lblStudentName.Location = new Point(470, 115);
+            lblStudentName.Name = "lblStudentName";
+            lblStudentName.Size = new Size(39, 15);
+            lblStudentName.TabIndex = 12;
+            lblStudentName.Text = "Name";
+            // 
+            // lblGPA
+            // 
+            lblGPA.AutoSize = true;
+            lblGPA.Location = new Point(470, 171);
+            lblGPA.Name = "lblGPA";
+            lblGPA.Size = new Size(29, 15);
+            lblGPA.TabIndex = 13;
+            lblGPA.Text = "GPA";
+            // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblGPA);
+            Controls.Add(lblStudentName);
+            Controls.Add(lblStudentid);
             Controls.Add(radioHonorRoll);
             Controls.Add(radioHighestGPA);
-            Controls.Add(cboxHonorRoll);
-            Controls.Add(cboxHighest);
             Controls.Add(btnExport);
             Controls.Add(txtStudGPA);
             Controls.Add(txtStudName);
@@ -177,9 +186,10 @@
         private TextBox txtStudName;
         private TextBox txtStudGPA;
         private Button btnExport;
-        private CheckBox cboxHighest;
-        private CheckBox cboxHonorRoll;
         private RadioButton radioHighestGPA;
         private RadioButton radioHonorRoll;
+        private Label lblStudentid;
+        private Label lblStudentName;
+        private Label lblGPA;
     }
 }

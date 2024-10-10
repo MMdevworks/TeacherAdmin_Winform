@@ -26,7 +26,10 @@ namespace TeacherAdmin_Winform
             Student.Data.Add(new Student() { Id = 1002, Name = "Ben", GPA = 4.4f });
             Student.Data.Add(new Student() { Id = 1003, Name = "Alice", GPA = 4.9f });
             Student.Data.Add(new Student() { Id = 1004, Name = "Amy", GPA = 3.9f });
-            Student.Data.Add(new Student() { Id = 1005, Name = "George", GPA = 3.3f });
+            Student.Data.Add(new Student() { Id = 1005, Name = "Pam", GPA = 4.0f });
+            Student.Data.Add(new Student() { Id = 1005, Name = "Kirk", GPA = 5.0f });
+            Student.Data.Add(new Student() { Id = 1005, Name = "George", GPA = 5.0f });
+            Student.Data.Add(new Student() { Id = 1005, Name = "Chris", GPA = 4.1f });
             gridStudents.DataSource = Student.Data;
             
             
@@ -69,23 +72,23 @@ namespace TeacherAdmin_Winform
             string datetime = DateTime.Now.ToString("yyyy-MM-dd_HHmmss");
             StreamWriter writer = null;
 
-            //add this when multiple checkboxes later
             if (radioHighestGPA.Checked == true)
             {
                 filename = "HighestGPA_";
-                Student.Data.Sort(new StudentGPAComparer());
+                Student.HighestGPAList.Clear();
+                Student.HighestGPA(Student.Data); //executes everytime button is clicked, creates dupes x number of times export is clicked
+                //Student.Data.Sort(new StudentGPAComparer());
                 try
                 {
-                    if (!File.Exists(filename))
-                    {
                         writer = File.CreateText(path + filename + datetime + extension);
-                        writer.WriteLine($"Highest GPA {Student.Data[0].GPA} Name: {Student.Data[0].Name}");
+                        //writer.WriteLine($"Highest GPA {Student.Data[0].GPA} Name: {Student.Data[0].Name}");
+                        writer.WriteLine($"Students with the highest GPA:");
+                        foreach (var student in Student.HighestGPAList)
+                        {
+                            writer.WriteLine($"StudentId: {student.Id} Name: {student.Name} GPA: {student.GPA}");
+                        }
+
                         MessageBox.Show("File Exported!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("An error occurred, please try again in a few seconds.");
-                    }
                 }
                 catch (Exception ex)
                 {
@@ -100,27 +103,19 @@ namespace TeacherAdmin_Winform
             else if (radioHonorRoll.Checked == true)
             {
                 filename = "HonorRoll_";
+
+                Student.HonorsList.Clear();
                 Student.HonorRoll(Student.Data);
 
                 try
                 {
-                    if (!File.Exists(filename))
-                    {
                         writer = File.CreateText(path + filename + datetime + extension);
                         writer.WriteLine($"Honor Roll Students:");
-                        foreach (var student in Student.honorsList)
+                        foreach (var student in Student.HonorsList)
                         {
                             writer.WriteLine($"StudentId: {student.Id} Name: {student.Name} GPA: {student.GPA}");
                         }
 
-
-
-                        MessageBox.Show("File Exported!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("An error occurred, please try again in a few seconds.");
-                    }
                 }
                 catch (Exception ex)
                 {
