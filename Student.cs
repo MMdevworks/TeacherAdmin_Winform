@@ -20,5 +20,13 @@ namespace TeacherAdmin_Winform
         public float GPA { get; set; }
 
         public static List<Student> Data = new List<Student>();
+
     }
+        public static void HonorRoll(List<Student> students) 
+        {
+            foreach(var student in students)
+            {
+                if (student.Id == 0)
+            }
+        }
 }

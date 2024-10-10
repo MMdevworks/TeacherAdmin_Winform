@@ -36,6 +36,9 @@
             txtStudGPA = new TextBox();
             btnExport = new Button();
             cboxHighest = new CheckBox();
+            cboxHonorRoll = new CheckBox();
+            radioHighestGPA = new RadioButton();
+            radioHonorRoll = new RadioButton();
             ((System.ComponentModel.ISupportInitialize)gridStudents).BeginInit();
             SuspendLayout();
             // 
@@ -109,11 +112,46 @@
             cboxHighest.Text = "Highest GPA";
             cboxHighest.UseVisualStyleBackColor = true;
             // 
+            // cboxHonorRoll
+            // 
+            cboxHonorRoll.AutoSize = true;
+            cboxHonorRoll.Location = new Point(591, 329);
+            cboxHonorRoll.Name = "cboxHonorRoll";
+            cboxHonorRoll.Size = new Size(83, 19);
+            cboxHonorRoll.TabIndex = 8;
+            cboxHonorRoll.Text = "Honor Roll";
+            cboxHonorRoll.UseVisualStyleBackColor = true;
+            // 
+            // radioHighestGPA
+            // 
+            radioHighestGPA.AutoSize = true;
+            radioHighestGPA.Location = new Point(426, 378);
+            radioHighestGPA.Name = "radioHighestGPA";
+            radioHighestGPA.Size = new Size(91, 19);
+            radioHighestGPA.TabIndex = 9;
+            radioHighestGPA.TabStop = true;
+            radioHighestGPA.Text = "Highest GPA";
+            radioHighestGPA.UseVisualStyleBackColor = true;
+            // 
+            // radioHonorRoll
+            // 
+            radioHonorRoll.AutoSize = true;
+            radioHonorRoll.Location = new Point(426, 404);
+            radioHonorRoll.Name = "radioHonorRoll";
+            radioHonorRoll.Size = new Size(82, 19);
+            radioHonorRoll.TabIndex = 10;
+            radioHonorRoll.TabStop = true;
+            radioHonorRoll.Text = "Honor Roll";
+            radioHonorRoll.UseVisualStyleBackColor = true;
+            // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(radioHonorRoll);
+            Controls.Add(radioHighestGPA);
+            Controls.Add(cboxHonorRoll);
             Controls.Add(cboxHighest);
             Controls.Add(btnExport);
             Controls.Add(txtStudGPA);
@@ -140,5 +178,8 @@
         private TextBox txtStudGPA;
         private Button btnExport;
         private CheckBox cboxHighest;
+        private CheckBox cboxHonorRoll;
+        private RadioButton radioHighestGPA;
+        private RadioButton radioHonorRoll;
     }
 }

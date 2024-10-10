@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace TeacherAdmin_Winform
 {
@@ -65,14 +66,21 @@ namespace TeacherAdmin_Winform
             const string path = @"C:\MSSA\Files\";
             string filename = "HighestGPA_";
             string extension = ".txt";
-            StreamWriter writer = null;
             string datetime = DateTime.Now.ToString("yyyy-MM-dd_HHmmss");
+            StreamWriter writer = null;
+
+            //add this when multiple checkboxes later
+            if (radioHighestGPA.Checked == true)
+            {
+                filename = "HighestGPA_";
+            }
+            else if (radioHonorRoll.Checked == true)
+            {
+                filename = "HonorRoll_";
+            }
 
             Student.Data.Sort(new StudentGPAComparer());
             
-
-
-
             try
             {
                 if (!File.Exists(filename))
@@ -81,11 +89,10 @@ namespace TeacherAdmin_Winform
                     writer.WriteLine($"Highest GPA {Student.Data[0].GPA} Name: {Student.Data[0].Name}");
                     MessageBox.Show("File Exported!");
                 }
-                //else
-                //{
-                //    File.AppendAllText(path + filename, $"Highest GPA {DateTime.Now}");
-                //    MessageBox.Show("Exported into existing file.");
-                //}
+                else
+                {
+                    MessageBox.Show("An error occurred, please try again in a few seconds.");
+                }
             }
             catch (Exception ex)
             {
@@ -98,11 +105,8 @@ namespace TeacherAdmin_Winform
             }
 
 
-            // add this when multiple checkboxes later
-            //if (cboxHighest.Checked == true)
-            //{
-            //    filename = "HighestGPA.txt";
-            //}
+
+
         }
     }
 }
