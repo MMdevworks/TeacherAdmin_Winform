@@ -34,6 +34,7 @@ namespace TeacherAdmin_Winform
                     HonorsList.Add(student);
                 }
             }
+            HonorsList.Sort(new StudentGPAComparer());
         }
 
         public static void HighestGPA(List<Student> students)

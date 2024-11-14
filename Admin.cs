@@ -22,17 +22,15 @@ namespace TeacherAdmin_Winform
 
         private void Admin_Load(object sender, EventArgs e)
         {
-            Student.Data.Add(new Student() { Id = 1001, Name = "Tommy", GPA = 3.2f });
-            Student.Data.Add(new Student() { Id = 1002, Name = "Ben", GPA = 4.4f });
-            Student.Data.Add(new Student() { Id = 1003, Name = "Alice", GPA = 4.9f });
-            Student.Data.Add(new Student() { Id = 1004, Name = "Amy", GPA = 3.9f });
-            Student.Data.Add(new Student() { Id = 1005, Name = "Pam", GPA = 4.0f });
-            Student.Data.Add(new Student() { Id = 1005, Name = "Kirk", GPA = 5.0f });
-            Student.Data.Add(new Student() { Id = 1005, Name = "George", GPA = 5.0f });
-            Student.Data.Add(new Student() { Id = 1005, Name = "Chris", GPA = 4.1f });
+            Student.Data.Add(new Student() { Id = 1201, Name = "Tommy", GPA = 3.2f });
+            Student.Data.Add(new Student() { Id = 1072, Name = "Ben", GPA = 4.4f });
+            Student.Data.Add(new Student() { Id = 1023, Name = "Alice", GPA = 4.9f });
+            Student.Data.Add(new Student() { Id = 1044, Name = "Amy", GPA = 3.9f });
+            Student.Data.Add(new Student() { Id = 1205, Name = "Pam", GPA = 4.0f });
+            Student.Data.Add(new Student() { Id = 1036, Name = "Kirk", GPA = 5.0f });
+            Student.Data.Add(new Student() { Id = 1007, Name = "George", GPA = 5.0f });
+            Student.Data.Add(new Student() { Id = 1108, Name = "Chris", GPA = 4.1f });
             gridStudents.DataSource = Student.Data;
-            
-            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -72,90 +70,51 @@ namespace TeacherAdmin_Winform
             string datetime = DateTime.Now.ToString("yyyy-MM-dd_HHmmss");
             StreamWriter writer = null;
 
-            if (radioHighestGPA.Checked == true)
+            try
             {
-                filename = "HighestGPA_";
-                Student.HighestGPAList.Clear();
-                Student.HighestGPA(Student.Data); //executes everytime button is clicked, creates dupes x number of times export is clicked
-                //Student.Data.Sort(new StudentGPAComparer());
-                try
+                if (radioHighestGPA.Checked == true)
                 {
-                        writer = File.CreateText(path + filename + datetime + extension);
-                        //writer.WriteLine($"Highest GPA {Student.Data[0].GPA} Name: {Student.Data[0].Name}");
-                        writer.WriteLine($"Students with the highest GPA:");
-                        foreach (var student in Student.HighestGPAList)
-                        {
-                            writer.WriteLine($"StudentId: {student.Id} Name: {student.Name} GPA: {student.GPA}");
-                        }
+                    filename = "HighestGPA_";
+                    Student.HighestGPAList.Clear();
+                    Student.HighestGPA(Student.Data);
 
-                        MessageBox.Show("File Exported!");
+
+                    writer = File.CreateText(path + filename + datetime + extension);
+
+                    writer.WriteLine($"Students with the highest GPA:");
+                    foreach (var student in Student.HighestGPAList)
+                    {
+                        writer.WriteLine($"StudentId: {student.Id} Name: {student.Name} GPA: {student.GPA}");
+                    }
+
+                    MessageBox.Show("File Exported!");
                 }
-                catch (Exception ex)
+
+                else if (radioHonorRoll.Checked == true)
                 {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    if (writer != null)
-                        writer.Close();
+                    filename = "HonorRoll_";
+
+                    Student.HonorsList.Clear();
+                    Student.HonorRoll(Student.Data);
+
+                    writer = File.CreateText(path + filename + datetime + extension);
+                    writer.WriteLine($"Honor Roll Students:");
+                    foreach (var student in Student.HonorsList)
+                    {
+                        writer.WriteLine($"StudentId: {student.Id} Name: {student.Name} GPA: {student.GPA}");
+                    }
                 }
             }
-            else if (radioHonorRoll.Checked == true)
+            catch (Exception ex)
             {
-                filename = "HonorRoll_";
-
-                Student.HonorsList.Clear();
-                Student.HonorRoll(Student.Data);
-
-                try
-                {
-                        writer = File.CreateText(path + filename + datetime + extension);
-                        writer.WriteLine($"Honor Roll Students:");
-                        foreach (var student in Student.HonorsList)
-                        {
-                            writer.WriteLine($"StudentId: {student.Id} Name: {student.Name} GPA: {student.GPA}");
-                        }
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    if (writer != null)
-                        writer.Close();
-                }
+                MessageBox.Show(ex.Message);
             }
-
-            //Student.Data.Sort(new StudentGPAComparer());
-            
-            //try
-            //{
-            //    if (!File.Exists(filename))
-            //    {
-            //        writer = File.CreateText(path + filename + datetime + extension);
-            //        writer.WriteLine($"Highest GPA {Student.Data[0].GPA} Name: {Student.Data[0].Name}");
-            //        MessageBox.Show("File Exported!");
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("An error occurred, please try again in a few seconds.");
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-            //finally
-            //{
-            //    if (writer != null)
-            //        writer.Close();
-            //}
-
-
-
-
+            finally
+            {
+                if (writer != null)
+                    writer.Close();
+            }
+        
         }
     }
 }

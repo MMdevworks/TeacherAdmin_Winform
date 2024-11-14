@@ -40,23 +40,28 @@
             lblStudentid = new Label();
             lblStudentName = new Label();
             lblGPA = new Label();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)gridStudents).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // gridStudents
             // 
             gridStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            gridStudents.BackgroundColor = Color.White;
             gridStudents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridStudents.Location = new Point(18, 19);
+            gridStudents.Location = new Point(12, 15);
             gridStudents.Name = "gridStudents";
-            gridStudents.Size = new Size(377, 404);
+            gridStudents.Size = new Size(396, 421);
             gridStudents.TabIndex = 0;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(557, 219);
+            btnAdd.Cursor = Cursors.Hand;
+            btnAdd.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAdd.Location = new Point(557, 214);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(75, 23);
+            btnAdd.Size = new Size(75, 29);
             btnAdd.TabIndex = 1;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -64,9 +69,12 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(557, 266);
+            btnDelete.Cursor = Cursors.Hand;
+            btnDelete.FlatAppearance.BorderColor = Color.White;
+            btnDelete.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDelete.Location = new Point(557, 261);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(75, 23);
+            btnDelete.Size = new Size(75, 29);
             btnDelete.TabIndex = 2;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
@@ -95,20 +103,27 @@
             // 
             // btnExport
             // 
-            btnExport.Location = new Point(557, 367);
+            btnExport.BackColor = Color.Gainsboro;
+            btnExport.Cursor = Cursors.Hand;
+            btnExport.FlatAppearance.BorderColor = Color.SteelBlue;
+            btnExport.FlatStyle = FlatStyle.Flat;
+            btnExport.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExport.ForeColor = Color.Black;
+            btnExport.Location = new Point(557, 364);
             btnExport.Name = "btnExport";
-            btnExport.Size = new Size(75, 23);
+            btnExport.Size = new Size(75, 29);
             btnExport.TabIndex = 6;
             btnExport.Text = "Export";
-            btnExport.UseVisualStyleBackColor = true;
+            btnExport.UseVisualStyleBackColor = false;
             btnExport.Click += btnExport_Click;
             // 
             // radioHighestGPA
             // 
             radioHighestGPA.AutoSize = true;
+            radioHighestGPA.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             radioHighestGPA.Location = new Point(478, 318);
             radioHighestGPA.Name = "radioHighestGPA";
-            radioHighestGPA.Size = new Size(91, 19);
+            radioHighestGPA.Size = new Size(97, 21);
             radioHighestGPA.TabIndex = 9;
             radioHighestGPA.TabStop = true;
             radioHighestGPA.Text = "Highest GPA";
@@ -117,9 +132,10 @@
             // radioHonorRoll
             // 
             radioHonorRoll.AutoSize = true;
-            radioHonorRoll.Location = new Point(618, 318);
+            radioHonorRoll.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            radioHonorRoll.Location = new Point(623, 318);
             radioHonorRoll.Name = "radioHonorRoll";
-            radioHonorRoll.Size = new Size(82, 19);
+            radioHonorRoll.Size = new Size(89, 21);
             radioHonorRoll.TabIndex = 10;
             radioHonorRoll.TabStop = true;
             radioHonorRoll.Text = "Honor Roll";
@@ -128,35 +144,48 @@
             // lblStudentid
             // 
             lblStudentid.AutoSize = true;
+            lblStudentid.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblStudentid.Location = new Point(448, 64);
             lblStudentid.Name = "lblStudentid";
-            lblStudentid.Size = new Size(61, 15);
+            lblStudentid.Size = new Size(67, 17);
             lblStudentid.TabIndex = 11;
             lblStudentid.Text = "Student Id";
             // 
             // lblStudentName
             // 
             lblStudentName.AutoSize = true;
+            lblStudentName.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblStudentName.Location = new Point(470, 115);
             lblStudentName.Name = "lblStudentName";
-            lblStudentName.Size = new Size(39, 15);
+            lblStudentName.Size = new Size(43, 17);
             lblStudentName.TabIndex = 12;
             lblStudentName.Text = "Name";
             // 
             // lblGPA
             // 
             lblGPA.AutoSize = true;
+            lblGPA.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblGPA.Location = new Point(470, 171);
             lblGPA.Name = "lblGPA";
-            lblGPA.Size = new Size(29, 15);
+            lblGPA.Size = new Size(31, 17);
             lblGPA.TabIndex = 13;
             lblGPA.Text = "GPA";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.SteelBlue;
+            pictureBox1.Location = new Point(4, 7);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(411, 437);
+            pictureBox1.TabIndex = 14;
+            pictureBox1.TabStop = false;
             // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.SkyBlue;
+            ClientSize = new Size(758, 450);
             Controls.Add(lblGPA);
             Controls.Add(lblStudentName);
             Controls.Add(lblStudentid);
@@ -169,10 +198,13 @@
             Controls.Add(btnDelete);
             Controls.Add(btnAdd);
             Controls.Add(gridStudents);
+            Controls.Add(pictureBox1);
             Name = "Admin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin";
             Load += Admin_Load;
             ((System.ComponentModel.ISupportInitialize)gridStudents).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -191,5 +223,6 @@
         private Label lblStudentid;
         private Label lblStudentName;
         private Label lblGPA;
+        private PictureBox pictureBox1;
     }
 }
