@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace TeacherAdmin_Winform
 {
@@ -21,11 +22,14 @@ namespace TeacherAdmin_Winform
 
         private void Admin_Load(object sender, EventArgs e)
         {
-            Student.Data.Add(new Student() { Id = 1001, Name = "Tommy", GPA = 3.2f });
-            Student.Data.Add(new Student() { Id = 1002, Name = "Ben", GPA = 4.4f });
-            Student.Data.Add(new Student() { Id = 1003, Name = "Alice", GPA = 4.9f });
-            Student.Data.Add(new Student() { Id = 1004, Name = "Amy", GPA = 3.9f });
-            Student.Data.Add(new Student() { Id = 1005, Name = "George", GPA = 3.3f });
+            Student.Data.Add(new Student() { Id = 1201, Name = "Tommy", GPA = 3.2f });
+            Student.Data.Add(new Student() { Id = 1072, Name = "Ben", GPA = 4.4f });
+            Student.Data.Add(new Student() { Id = 1023, Name = "Alice", GPA = 4.9f });
+            Student.Data.Add(new Student() { Id = 1044, Name = "Amy", GPA = 3.9f });
+            Student.Data.Add(new Student() { Id = 1205, Name = "Pam", GPA = 4.0f });
+            Student.Data.Add(new Student() { Id = 1036, Name = "Kirk", GPA = 5.0f });
+            Student.Data.Add(new Student() { Id = 1007, Name = "George", GPA = 5.0f });
+            Student.Data.Add(new Student() { Id = 1108, Name = "Chris", GPA = 4.1f });
             gridStudents.DataSource = Student.Data;
         }
 
@@ -40,8 +44,6 @@ namespace TeacherAdmin_Winform
             Student.Data.Add(newStudent);
 
             RefreshData();
-
-
         }
 
         private void RefreshData()
@@ -65,27 +67,43 @@ namespace TeacherAdmin_Winform
             const string path = @"C:\MSSA\Files\";
             string filename = "HighestGPA_";
             string extension = ".txt";
-            StreamWriter writer = null;
             string datetime = DateTime.Now.ToString("yyyy-MM-dd_HHmmss");
-
-            Student.Data.Sort(new StudentGPAComparer());
-            
-
-
+            StreamWriter writer = null;
 
             try
             {
-                if (!File.Exists(filename))
+                if (radioHighestGPA.Checked == true)
                 {
+                    filename = "HighestGPA_";
+                    Student.HighestGPAList.Clear();
+                    Student.HighestGPA(Student.Data);
+
+
                     writer = File.CreateText(path + filename + datetime + extension);
-                    writer.WriteLine($"Highest GPA {Student.Data[0].GPA} Name: {Student.Data[0].Name}");
+
+                    writer.WriteLine($"Students with the highest GPA:");
+                    foreach (var student in Student.HighestGPAList)
+                    {
+                        writer.WriteLine($"StudentId: {student.Id} Name: {student.Name} GPA: {student.GPA}");
+                    }
+
                     MessageBox.Show("File Exported!");
                 }
-                //else
-                //{
-                //    File.AppendAllText(path + filename, $"Highest GPA {DateTime.Now}");
-                //    MessageBox.Show("Exported into existing file.");
-                //}
+
+                else if (radioHonorRoll.Checked == true)
+                {
+                    filename = "HonorRoll_";
+
+                    Student.HonorsList.Clear();
+                    Student.HonorRoll(Student.Data);
+
+                    writer = File.CreateText(path + filename + datetime + extension);
+                    writer.WriteLine($"Honor Roll Students:");
+                    foreach (var student in Student.HonorsList)
+                    {
+                        writer.WriteLine($"StudentId: {student.Id} Name: {student.Name} GPA: {student.GPA}");
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -96,13 +114,7 @@ namespace TeacherAdmin_Winform
                 if (writer != null)
                     writer.Close();
             }
-
-
-            // add this when multiple checkboxes later
-            //if (cboxHighest.Checked == true)
-            //{
-            //    filename = "HighestGPA.txt";
-            //}
+        
         }
     }
 }

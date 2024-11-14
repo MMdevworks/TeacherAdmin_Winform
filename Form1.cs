@@ -14,20 +14,20 @@ namespace TeacherAdmin_Winform
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Admin admin = new Admin();
-            admin.ShowDialog();
+            //this.Hide();
+            //Admin admin = new Admin();
+            //admin.ShowDialog();
 
-            //if(txtUsername.Text == "Teacher" && txtPassword.Text == "Admin")
-            //{
-            //    this.Hide();
-            //    Admin admin = new Admin();
-            //    admin.ShowDialog();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Incorrect Username or Password, Please try again");
-            //}
+            if (txtUsername.Text == "Teacher" && txtPassword.Text == "Admin")
+            {
+                this.Hide();
+                Admin admin = new Admin();
+                admin.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Incorrect Username or Password, Please try again");
+            }
         }
     }
 }
