@@ -61,7 +61,7 @@ Before you can run this application locally, make sure you have the following to
     1. Highest GPA - to export student or students with the highest GPA
     2. Honor roll - to export all students above 4.0 GPA in descending order
        >  With radio button selected > Press Export, the selected text file will be exported to the configured file path  
-       > (<a href="#prereqs">see prerequisites</a>)
+       > [See prerequisites](#prerequisites)
 
 <p align="right">(<a href="#readme-top">Back to top</a>)</p>
 
